@@ -1,0 +1,34 @@
+<div class="jumbotron" style="background-color: #ce5c83">
+        <div class="container">
+        <br>
+        <br>
+          <h1 class="text-center" >Bienvenue sur The Gossip Project.</h1>
+          <br>
+          <br>
+          <br>
+          <p class= "text-center"><a href="<%= new_gossip_path %>" class="btn btn-primary">Créer un article</a></p>
+          <br>
+          <br>
+        </div>
+      </div>
+
+<h2> Voici les gossips:</h2>
+
+
+<% if session[:user_id].present? %>
+  <h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>
+<% end %>
+
+
+<% @gossip.each do |gossip| %>
+<ul class="list-group">
+  
+    <tr>
+      <li class="list-group-item"><%= link_to gossip.user.first_name, "/user/#{gossip.user.id}" %> <%= link_to gossip.title, "/gossip/#{gossip.id}" %></li>
+    </tr>
+    </ul>
+  <% end %>
+
+
+
+
